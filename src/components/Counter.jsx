@@ -1,27 +1,39 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import plusLogo from '../assets/icons/plus.png';
 import minusLogo from '../assets/icons/minus.png';
 import resetLogo from '../assets/icons/reset.png';
-import { useDispatch, useSelector } from 'react-redux';
+import { inc, dec, reset } from '../store/actions';
 
 export const Counter = () => {
   const dispatch = useDispatch();
-  const cash = useSelector((state) => state.cash);
 
-  console.log(cash);
+  const count = useSelector((state) => state.counter);
+
+  const increment = () => {
+    dispatch(inc());
+  };
+
+  const decrement = () => {
+    dispatch(dec());
+  };
+
+  const res = () => {
+    dispatch(reset());
+  };
 
   return (
     <div className="wrapper">
-      <div className="count">0</div>
+      <div className="count">{count}</div>
       <div className="wrapper__btn">
-        <button className="inc btn">
+        <button className="inc btn" onClick={() => increment()}>
           <img src={plusLogo} alt="plus" />
         </button>
-        <button className="dec btn">
+        <button className="dec btn" onClick={() => decrement()}>
           <img src={minusLogo} alt="minus" />
         </button>
-        <button className="reset btn">
+        <button className="reset btn" onClick={() => res()}>
           <img src={resetLogo} alt="reset" />
         </button>
       </div>

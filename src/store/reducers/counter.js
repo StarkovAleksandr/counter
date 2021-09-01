@@ -1,3 +1,5 @@
+import { INC, DEC, RESET } from '../actionTypes';
+
 export const counterReducer = (state = 0, action) => {
   switch (action.type) {
     case INC:
